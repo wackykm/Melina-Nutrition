@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nourish with Mariana · Personalized Nutrition Coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bone:#f1ede4;
+    --paper:#fbfaf5;
+    --ink:#1a1915;
+    --ink-soft:#39362d;
+    --muted:#6f6c61;
+    --faint:#a6a294;
+    --line:#e2ddd0;
+    --line-2:#d6d0c0;
+    --forest:#22352a;
+    --forest-2:#2c4434;
+    --moss:#3c6e4f;
+    --moss-soft:#e7ede5;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Hanken Grotesk',sans-serif;background:var(--bone);color:var(--ink);
+    line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;letter-spacing:-.01em}
+  .serif{font-family:'Newsreader',serif;line-height:1.06;font-weight:400;letter-spacing:-.02em}
+  body.display-sans .serif{font-family:'Hanken Grotesk',sans-serif;font-weight:500;letter-spacing:-.03em}
+  a{color:inherit;text-decoration:none}
+  img{display:block}
+
+  .label{font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .label .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--moss);
+    vertical-align:middle;margin-right:8px;transform:translateY(-1px)}
+
+  .wrap{max-width:1140px;margin:0 auto;padding:0 36px;position:relative}
+  @media(max-width:560px){.wrap{padding:0 22px}}
+
+  /* ---------- BUTTONS ---------- */
+  .btn{display:inline-flex;align-items:center;gap:9px;border:none;cursor:pointer;
+    font-family:inherit;font-weight:600;font-size:15px;padding:13px 24px;border-radius:999px;
+    transition:.2s ease;white-space:nowrap;letter-spacing:-.01em}
+  .btn svg{width:16px;height:16px}
+  .btn-primary{background:var(--ink);color:var(--paper)}
+  .btn-primary:hover{background:#000;transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.4px var(--line-2)}
+  .btn-ghost:hover{box-shadow:inset 0 0 0 1.4px var(--ink)}
+  .btn-light{background:var(--paper);color:var(--ink)}
+  .btn-light:hover{background:#fff;transform:translateY(-1px)}
+
+  /* ---------- NAV ---------- */
+  nav{position:sticky;top:0;z-index:40;background:rgba(241,237,228,.82);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;
+    padding:16px 36px}
+  .logo{font-family:'Newsreader',serif;font-weight:400;font-size:23px;letter-spacing:-.02em;
+    display:flex;align-items:center;gap:10px}
+  .logo .mark{width:28px;height:28px;border-radius:50%;border:1.4px solid var(--ink);
+    display:grid;place-items:center;font-size:14px;font-style:italic}
+  .nav-right{display:flex;align-items:center;gap:26px}
+  .nav-links{display:flex;gap:28px;font-size:14px;font-weight:500}
+  .nav-links a{color:var(--muted);transition:.2s}
+  .nav-links a:hover{color:var(--ink)}
+  .lang{display:flex;align-items:center;font-size:12px;font-weight:600;letter-spacing:.04em}
+  .lang button{border:none;background:none;padding:4px 7px;cursor:pointer;color:var(--faint);font-family:inherit;transition:.2s}
+  .lang button.on{color:var(--ink)}
+  .lang .sep{color:var(--line-2)}
+  @media(max-width:820px){.nav-links{display:none}}
+  @media(max-width:560px){nav{padding:14px 22px}}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- HERO ---------- */
+  header{padding:84px 0 30px}
+  .hero{display:grid;grid-template-columns:1.04fr .96fr;gap:64px;align-items:center}
+  @media(max-width:900px){.hero{grid-template-columns:1fr;gap:44px}}
+  .hero h1{font-size:clamp(44px,6vw,76px);font-weight:300;margin:24px 0 0}
+  .hero h1 em{font-style:italic;font-weight:400}
+  .hero p.sub{font-size:19px;color:var(--muted);margin:26px 0 32px;max-width:486px;line-height:1.55}
+  .hero-cta{display:flex;gap:13px;flex-wrap:wrap;align-items:center}
+  .hero-note{font-size:13.5px;color:var(--muted);margin-top:22px;display:flex;align-items:center;gap:8px}
+  .hero-note .tick{width:15px;height:15px;flex-shrink:0;color:var(--moss)}
+
+  /* hero readout */
+  .hero-card{position:relative}
+  .hero-photo{width:100%;aspect-ratio:4/4.5;border-radius:var(--radius);object-fit:cover;
+    background:linear-gradient(135deg,#d3d6cb,#bcb29a)}
+  .readout{position:absolute;left:-22px;bottom:26px;width:288px;background:var(--paper);
+    border:1px solid var(--line);border-radius:var(--radius);padding:17px 18px;
+    box-shadow:0 1px 2px rgba(26,25,21,.04),0 22px 44px rgba(26,25,21,.13)}
+  .readout-top{display:flex;align-items:center;justify-content:space-between;
+    padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:13px}
+  .readout-top .ttl{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+  .readout-top .tm{font-size:11.5px;color:var(--faint);font-variant-numeric:tabular-nums}
+  .meter{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:11px}
+  .meter .nm{font-size:13px;color:var(--ink-soft)}
+  .dots{display:flex;gap:4px}
+  .dots i{width:7px;height:7px;border-radius:50%;background:var(--line-2)}
+  .dots i.on{background:var(--moss)}
+  .readout-note{display:flex;gap:9px;align-items:flex-start;margin-top:14px;padding-top:13px;
+    border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);line-height:1.5}
+  .readout-note .av{width:24px;height:24px;border-radius:50%;background:var(--forest);color:var(--paper);
+    display:grid;place-items:center;font-size:11px;font-family:'Newsreader',serif;font-style:italic;flex-shrink:0}
+  @media(max-width:900px){.readout{left:auto;right:18px;bottom:18px}}
+  @media(max-width:420px){.readout{width:248px}}
+
+  /* ---------- STATS STRIP ---------- */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);margin-top:72px}
+  @media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}}
+  .stat{padding:30px 26px;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:none}
+  @media(max-width:720px){.stat:nth-child(2){border-right:none}
+    .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line)}}
+  .stat .n{font-family:'Newsreader',serif;font-size:40px;font-weight:300;letter-spacing:-.02em;line-height:1}
+  .stat .t{font-size:13px;color:var(--muted);margin-top:9px}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:104px 0;position:relative}
+  .sec-head{max-width:680px;margin:0 0 56px}
+  .sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .sec-head h2{font-size:clamp(34px,4.4vw,50px);font-weight:300;margin-top:18px}
+  .sec-head h2 em{font-style:italic}
+  .sec-head p{color:var(--muted);font-size:17px;margin-top:18px;max-width:560px}
+  .sec-head.center p{margin-left:auto;margin-right:auto}
+
+  /* HOW IT WORKS */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line-2)}
+  @media(max-width:780px){.steps{grid-template-columns:1fr}}
+  .step{padding:34px 30px 34px 0;border-right:1px solid var(--line);position:relative}
+  .step:last-child{border-right:none;padding-right:0}
+  .step:not(:first-child){padding-left:30px}
+  @media(max-width:780px){.step{border-right:none;border-bottom:1px solid var(--line);padding:30px 0}
+    .step:last-child{border-bottom:none}.step:not(:first-child){padding-left:0}}
+  .step .num{font-family:'Newsreader',serif;font-size:15px;color:var(--moss);font-weight:400}
+  .step .ic{width:30px;height:30px;color:var(--ink);margin:18px 0 16px;stroke-width:1.4}
+  .step h3{font-size:21px;font-weight:600;margin-bottom:9px;letter-spacing:-.02em}
+  .step p{font-size:15px;color:var(--muted);line-height:1.55}
+  .step .ap{display:inline-flex;align-items:center;gap:7px;margin-top:16px;font-size:12px;
+    color:var(--moss);font-weight:600;letter-spacing:.02em}
+  .step .ap .tick{width:13px;height:13px}
+
+  /* ---------- ABOUT ---------- */
+  #about{padding-top:0}
+  .about{background:var(--forest);color:#e9ece6;border-radius:24px;padding:62px;display:grid;
+    grid-template-columns:.82fr 1.18fr;gap:56px;align-items:center}
+  @media(max-width:820px){.about{grid-template-columns:1fr;padding:40px 32px;gap:34px}}
+  .about-photo{width:100%;aspect-ratio:1/1.08;border-radius:var(--radius);object-fit:cover;
+    object-position:center 32%;
+    background:linear-gradient(135deg,#586a5a,#3a4a3c)}
+  .about .label{color:#9bb0a0}
+  .about .label .dot{background:#9bb0a0}
+  .about h2{font-size:clamp(30px,3.6vw,42px);font-weight:300;margin:16px 0 20px}
+  .about h2 em{font-style:italic}
+  .about p{color:rgba(233,236,230,.78);margin-bottom:15px;font-size:16px;line-height:1.6;max-width:560px}
+  .about .cred{display:flex;flex-direction:column;margin-top:26px;border-top:1px solid rgba(255,255,255,.14)}
+  .about .cred span{display:flex;align-items:center;gap:11px;padding:13px 0;font-size:14px;
+    border-bottom:1px solid rgba(255,255,255,.1);color:rgba(233,236,230,.92)}
+  .about .cred span .tick{width:15px;height:15px;color:#9bb0a0;flex-shrink:0}
+
+  /* ---------- PRICING ---------- */
+  .price-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:0;border:1px solid var(--line-2);
+    border-radius:20px;overflow:hidden;background:var(--paper)}
+  @media(max-width:780px){.price-wrap{grid-template-columns:1fr}}
+  .price-left{padding:46px 44px;border-right:1px solid var(--line)}
+  @media(max-width:780px){.price-left{border-right:none;border-bottom:1px solid var(--line)}}
+  .price-left .tier{font-family:'Newsreader',serif;font-style:italic;font-size:18px;color:var(--moss)}
+  .price-left .amt{font-family:'Newsreader',serif;font-size:74px;font-weight:300;letter-spacing:-.03em;
+    margin:14px 0 0;line-height:1}
+  .price-left .amt sup{font-size:30px;font-weight:300;top:-1.1em;margin-right:2px}
+  .price-left .amt .per-mo{font-size:19px;color:var(--muted);font-family:'Hanken Grotesk';font-weight:500;letter-spacing:0}
+  .price-left .per{color:var(--muted);font-size:14.5px;margin:14px 0 28px}
+  .price-left .btn{width:100%;justify-content:center}
+  .price-left .foot{font-size:12.5px;color:var(--faint);margin-top:16px;text-align:center}
+  .price-right{padding:46px 44px;display:flex;flex-direction:column;justify-content:center}
+  .price-right .inc{font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--faint);margin-bottom:8px}
+  .price-right ul{list-style:none;display:grid;gap:0}
+  .price-right li{display:flex;gap:13px;font-size:15.5px;padding:14px 0;border-bottom:1px solid var(--line);align-items:flex-start}
+  .price-right li:last-child{border-bottom:none}
+  .price-right li .ck{width:17px;height:17px;color:var(--moss);flex-shrink:0;margin-top:3px}
+
+  /* ---------- TESTIMONIALS ---------- */
+  .tgrid{columns:2;column-gap:24px}
+  @media(max-width:760px){.tgrid{columns:1}}
+  .tcard{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:30px;
+    margin-bottom:24px;break-inside:avoid}
+  .tcard .stars{color:var(--ink);font-size:13px;letter-spacing:3px;margin-bottom:16px}
+  .tcard p{font-family:'Newsreader',serif;font-size:21px;font-weight:300;line-height:1.4;margin-bottom:22px;letter-spacing:-.01em}
+  .tcard .who{display:flex;align-items:center;gap:12px}
+  .tcard .who .av{width:38px;height:38px;border-radius:50%;background:var(--moss-soft);color:var(--forest);
+    display:grid;place-items:center;font-weight:600;font-size:13px}
+  .tcard .who .nm{font-weight:600;font-size:14px}
+  .tcard .who .meta{font-size:12.5px;color:var(--muted)}
+
+  /* ---------- FINAL CTA ---------- */
+  .final{background:var(--ink);color:var(--bone);border-radius:24px;padding:78px 40px;text-align:center}
+  .final h2{font-size:clamp(34px,4.6vw,52px);font-weight:300;margin-bottom:18px}
+  .final h2 em{font-style:italic}
+  .final p{font-size:18px;color:rgba(241,237,228,.74);max-width:486px;margin:0 auto 32px;line-height:1.55}
+  .disclaimer{max-width:760px;margin:48px auto 0;text-align:center;font-size:12.5px;
+    color:var(--faint);line-height:1.65}
+  footer{border-top:1px solid var(--line);margin-top:8px}
+  .foot-in{display:flex;align-items:center;justify-content:space-between;padding:36px 0;flex-wrap:wrap;gap:16px}
+  .foot-in .logo{font-size:21px}
+  .foot-in .cc{font-size:13px;color:var(--muted)}
+
+  [data-es]{display:none}
+  body.es [data-en]{display:none}
+  body.es [data-es]{display:inline}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="#">Melina - Nutrition</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#how"><span data-en>How it works</span><span data-es>Cómo funciona</span></a>
+      <a href="#about"><span data-en>About</span><span data-es>Sobre mí</span></a>
+      <a href="#pricing"><span data-en>Pricing</span><span data-es>Precio</span></a>
+      <a href="#reviews"><span data-en>Reviews</span><span data-es>Opiniones</span></a>
+    </div>
+    <div class="lang">
+      <button id="enBtn" class="on" onclick="setLang('en')">EN</button>
+      <span class="sep">/</span>
+      <button id="esBtn" onclick="setLang('es')">ES</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header>
+  <div class="wrap hero">
+    <div class="reveal in">
+      <span class="label"><span class="dot"></span><span data-en>Personalized nutrition coaching</span><span data-es>Coaching nutricional personalizado</span></span>
+      <h1 class="serif">
+        <span data-en>Eat better, <em>one plate</em> at a time.</span>
+        <span data-es>Comé mejor, <em>un plato</em> a la vez.</span>
+      </h1>
+      <p class="sub">
+        <span data-en>One-on-one coaching that fits real life. Send a photo of your meal, get honest feedback, and build habits that actually last forever, all from the messaging app you already use.</span>
+        <span data-es>Acompañamiento uno a uno que se adapta a tu vida real. Mandá una foto de tu plato, recibí una devolución honesta y construí hábitos que de verdad duran para siempre, todo desde la app de mensajes que ya usás.</span>
+      </p>
+      <div class="hero-cta">
+        <a href="https://wa.me/10000000000" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.6 8.6 0 0 1-4-1L3 20l1-5.5a8.6 8.6 0 0 1-1-4A8.38 8.38 0 0 1 11.5 2 8.38 8.38 0 0 1 21 11.5z"/></svg>
+          <span data-en>Start on WhatsApp</span><span data-es>Empezá por WhatsApp</span>
+        </a>
+        <a href="#how" class="btn btn-ghost"><span data-en>See how it works</span><span data-es>Ver cómo funciona</span></a>
+      </div>
+      <div class="hero-note">
+        <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        <span data-en>No app to download · Coaching in English &amp; Spanish</span><span data-es>Sin apps que descargar · Coaching en inglés y español</span>
+      </div>
+    </div>
+    <div class="hero-card reveal in">
+      <img class="hero-photo" src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=75" alt="">
+      <div class="readout">
+        <div class="readout-top">
+          <span class="ttl"><span data-en>Lunch</span><span data-es>Almuerzo</span></span>
+          <span class="tm">12:40 PM</span>
+        </div>
+        <div class="meter"><span class="nm"><span data-en>Vegetables</span><span data-es>Vegetales</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div>
+        <div class="meter"><span class="nm"><span data-en>Protein</span><span data-es>Proteína</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
+        <div class="meter"><span class="nm"><span data-en>Balance</span><span data-es>Equilibrio</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div>
+        <div class="readout-note">
+          <span class="av">M</span>
+          <span><span data-en>Great balance! Plenty of veggies. Add a little more protein next time.</span><span data-es>¡Buen equilibrio! Muchos vegetales. Sumá un poco más de proteína la próxima.</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="stats reveal">
+      <div class="stat"><div class="n">20+</div><div class="t"><span data-en>Satisfied Clients supported</span><span data-es>Clientes satisfechos</span></div></div>
+      <div class="stat"><div class="n">2</div><div class="t"><span data-en>Languages — EN &amp; ES</span><span data-es>Idiomas — inglés y español</span></div></div>
+      <div class="stat"><div class="n serif" style="font-style:italic">2–3</div><div class="t"><span data-en>Months, average program</span><span data-es>Meses, programa promedio</span></div></div>
+      <div class="stat"><div class="n"><span data-en>On-Demand</span><span data-es>A demanda</span></div><div class="t"><span data-en>Feedback on your meals</span><span data-es>Devolución de tus comidas</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="label"><span class="dot"></span><span data-en>Simple by design</span><span data-es>Simple a propósito</span></span>
+      <h2 class="serif"><span data-en>How the coaching works</span><span data-es>Cómo funciona el acompañamiento</span></h2>
+      <p><span data-en>No complicated apps, no calorie counting or spreadsheets. Just food and personalized guidance to your needs and lifestyle. One message, one plate at a time.</span><span data-es>Sin apps complicadas, sin contar calorías ni planillas. Solo comida y orientación personalizada según tus necesidades y tu estilo de vida. Un mensaje, un plato a la vez.</span></p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="num">01</span>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2L8 5h8l1.5 2h2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.4"/></svg>
+        <h3><span data-en>Snap your plate</span><span data-es>Sacá una foto</span></h3>
+        <p><span data-en>Take a quick photo of what you're eating at home, at work, or out at a restaurant.</span><span data-es>Sacá una foto rápida de lo que estás comiendo — en casa, en el trabajo o en un restaurante.</span></p>
+        <span class="ap"><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>via WhatsApp or Messages</span><span data-es>por WhatsApp o Mensajes</span></span>
+      </div>
+      <div class="step reveal">
+        <span class="num">02</span>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.6 8.6 0 0 1-4-1L3 20l1-5.5a8.6 8.6 0 0 1-1-4A8.38 8.38 0 0 1 11.5 2 8.38 8.38 0 0 1 21 11.5z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg>
+        <h3><span data-en>Get personal feedback</span><span data-es>Recibí una devolución</span></h3>
+        <p><span data-en>A thumbs-up when you're on track, or a small, friendly tweak when something needs adjusting.</span><span data-es>Un visto bueno cuando vas bien, o un pequeño ajuste amable cuando algo hay que cambiar.</span></p>
+        <span class="ap"><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>on demand</span><span data-es>a demanda</span></span>
+      </div>
+      <div class="step reveal">
+        <span class="num">03</span>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-5 0-7 2.5-9.5S20 8 20 8s-.5 4-3 6.5S12 17 12 17"/><path d="M12 21c0-4-1-6-3.5-8.5S4 9 4 9s.4 3.5 2.5 6 5.5 3 5.5 3"/><path d="M12 21v-7"/></svg>
+        <h3><span data-en>Build forever habits</span><span data-es>Construí hábitos para siempre</span></h3>
+        <p><span data-en>Over 1–3 months of steady support, small daily changes add up to results you can keep.</span><span data-es>Con 1 a 3 meses de apoyo constante, los pequeños cambios diarios se vuelven resultados que podés mantener.</span></p>
+        <span class="ap"><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>check-in consultations every 2 weeks</span><span data-es>consultas de seguimiento cada 2 semanas</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="about reveal">
+      <img class="about-photo" src="images/melina-about.jpg" alt="Melina">
+      <div>
+        <span class="label"><span class="dot"></span><span data-en>Meet your coach</span><span data-es>Conocé a tu coach</span></span>
+        <h2 class="serif"><span data-en>Hi, I'm <em>Melina</em></span><span data-es>Hola, soy <em>Melina</em></span></h2>
+        <p><span data-en>I trained as a dietitian in Argentina and have spent years helping people reach their goals through patient, day to day, plate to plate, coaching rather than rigid diets.</span><span data-es>Me formé como dietista en Argentina y pasé años ayudando a personas a alcanzar sus objetivos con un acompañamiento paciente, día a día y plato a plato, en lugar de dietas rígidas.</span></p>
+        <p><span data-en>My approach is simple: meet you where you are, look at the food you actually eat, and teach you how to build a plate that you genuinely enjoy and that fits seamlessly into your daily life.  </span><span data-es>Mi enfoque es simple: acompañarte desde donde estás, mirar la comida que realmente comés y enseñarte a armar un plato que disfrutes de verdad y que se integre sin esfuerzo en tu día a día.</span></p>
+        <div class="cred">
+          <span><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>Dietitian, trained in Argentina</span><span data-es>Dietista, formada en Argentina</span></span>
+          <span><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>Bilingual — English &amp; Spanish</span><span data-es>Bilingüe — inglés y español</span></span>
+          <span><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>20+ clients supported</span><span data-es>+20 clientes acompañados</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="label"><span class="dot"></span><span data-en>Simple pricing</span><span data-es>Precio simple</span></span>
+      <h2 class="serif"><span data-en>One plan, everything included</span><span data-es>Un plan, todo incluido</span></h2>
+      <p><span data-en>No hidden fees. Cancel anytime.</span><span data-es>Sin costos ocultos. Cancelás cuando quieras.</span></p>
+    </div>
+    <div class="price-wrap reveal">
+      <div class="price-left">
+        <div class="tier"><span data-en>Monthly Coaching</span><span data-es>Acompañamiento Mensual</span></div>
+        <div class="amt"><sup>$</sup><span id="priceAmt">200</span><span class="per-mo">/mo</span></div>
+        <div class="per"><span data-en>billed monthly · cancel anytime</span><span data-es>facturado mensualmente · cancelás cuando quieras</span></div>
+        <a href="https://wa.me/10000000000" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.6 8.6 0 0 1-4-1L3 20l1-5.5a8.6 8.6 0 0 1-1-4A8.38 8.38 0 0 1 11.5 2 8.38 8.38 0 0 1 21 11.5z"/></svg>
+          <span data-en>Get started</span><span data-es>Empezá ahora</span>
+        </a>
+        <div class="foot"><span data-en>Most clients work with me for 1–2 months.</span><span data-es>La mayoría trabaja conmigo de 1 a 2 meses.</span></div>
+      </div>
+      <div class="price-right">
+        <div class="inc"><span data-en>What's included</span><span data-es>Qué incluye</span></div>
+        <ul>
+          <li><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>Daily meal photo feedback</span><span data-es>Devolución diaria de fotos de tus comidas</span></li>
+          <li><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>Personalized guidance for your goals</span><span data-es>Orientación personalizada según tus objetivos</span></li>
+          <li><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>Check-in consultations every 2 weeks</span><span data-es>Consultas de seguimiento cada 2 semanas</span></li>
+          <li><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>Message support in English or Spanish</span><span data-es>Soporte por mensaje en inglés o español</span></li>
+          <li><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>Right inside WhatsApp or Messages — whatever you prefer</span><span data-es>Directo en WhatsApp o Mensajes, lo que prefieras</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="label"><span class="dot"></span><span data-en>Real results</span><span data-es>Resultados reales</span></span>
+      <h2 class="serif"><span data-en>What patients say</span><span data-es>Lo que dicen los pacientes</span></h2>
+    </div>
+    <div class="tgrid">
+      <div class="tcard reveal">
+        <div class="stars">★★★★★</div>
+        <p><span data-en>"I finally stopped dieting and started eating. The photo feedback kept me honest without feeling judged."</span><span data-es>"Por fin dejé de hacer dieta y empecé a comer. La devolución de las fotos me mantuvo honesta sin sentirme juzgada."</span></p>
+        <div class="who"><div class="av">SA</div><div><div class="nm">Sofia A.</div><div class="meta"><span data-en>Lost 18 lbs in 2 months</span><span data-es>Bajó 8 kg en 2 meses</span></div></div></div>
+      </div>
+      <div class="tcard reveal">
+        <div class="stars">★★★★★</div>
+        <p><span data-en>"Having Melina just a text away made all the difference. Quick, kind, and actually doable advice."</span><span data-es>"Tener a Melina a un mensaje de distancia hizo toda la diferencia. Consejos rápidos, amables y realmente posibles."</span></p>
+        <div class="who"><div class="av">JM</div><div><div class="nm">James M.</div><div class="meta"><span data-en>Client · 6 weeks</span><span data-es>Cliente · 6 semanas</span></div></div></div>
+      </div>
+      <div class="tcard reveal">
+        <div class="stars">★★★★★</div>
+        <p><span data-en>"She speaks both my languages — literally and figuratively. I never felt like I was on a crazy diet."</span><span data-es>"Habla mis dos idiomas — literal y figuradamente. Nunca sentí que estaba en una dieta loca."</span></p>
+        <div class="who"><div class="av">CR</div><div><div class="nm">Carmen R.</div><div class="meta"><span data-en>Client · 2 months</span><span data-es>Cliente · 2 meses</span></div></div></div>
+      </div>
+      <div class="tcard reveal">
+        <div class="stars">★★★★★</div>
+        <p><span data-en>"The two-week check-ins kept me accountable. Best money I've spent on my health."</span><span data-es>"Los seguimientos cada dos semanas me mantuvieron en foco. La mejor plata que gasté en mi salud."</span></p>
+        <div class="who"><div class="av">DT</div><div><div class="nm">Daniel T.</div><div class="meta"><span data-en>Lost 12 lbs</span><span data-es>Bajó 5 kg</span></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section>
+  <div class="wrap">
+    <div class="final reveal">
+      <h2 class="serif"><span data-en>Ready to <em>feel better?</em></span><span data-es>¿Lista para <em>sentirte mejor?</em></span></h2>
+      <p><span data-en>Send a message and let's talk about your goals. The first conversation is on me.</span><span data-es>Mandá un mensaje y hablemos de tus objetivos. La primera charla es gratis.</span></p>
+      <a href="https://wa.me/10000000000" class="btn btn-light">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.6 8.6 0 0 1-4-1L3 20l1-5.5a8.6 8.6 0 0 1-1-4A8.38 8.38 0 0 1 11.5 2 8.38 8.38 0 0 1 21 11.5z"/></svg>
+        <span data-en>Message Melina</span><span data-es>Escribile a Melina</span>
+      </a>
+    </div>
+    <p class="disclaimer">
+      <span data-en>Nourish provides nutrition coaching and general wellness education. It is not medical care, medical nutrition therapy, or treatment for any disease or condition, and does not replace advice from your physician or a licensed healthcare provider. Always consult your doctor before making significant changes to your diet, especially if you have a medical condition.</span>
+      <span data-es>Nourish ofrece coaching nutricional y educación general de bienestar. No constituye atención médica, terapia nutricional médica ni tratamiento de ninguna enfermedad o condición, y no reemplaza el consejo de tu médico o un profesional de salud licenciado. Consultá siempre a tu médico antes de hacer cambios importantes en tu alimentación, especialmente si tenés alguna condición médica.</span>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <a class="logo" href="#"><span class="mark">N</span> Nourish</a>
+    <div class="cc">© 2026 Nourish · <span data-en>Nutrition coaching in English &amp; Spanish</span><span data-es>Coaching nutricional en inglés y español</span></div>
+  </div>
+</footer>
+
+<script>
+  function setLang(l){
+    document.body.classList.toggle('es',l==='es');
+    document.documentElement.lang=l;
+    document.getElementById('enBtn').classList.toggle('on',l==='en');
+    document.getElementById('esBtn').classList.toggle('on',l==='es');
+  }
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+<div id="tweaks-root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="tweaks-app.jsx"></script>
+</body>
+</html>
