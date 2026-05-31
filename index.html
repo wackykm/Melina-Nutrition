@@ -158,44 +158,47 @@
   .about h2 em{font-style:italic}
   .about p{color:rgba(233,236,230,.78);margin-bottom:15px;font-size:16px;line-height:1.6;max-width:560px}
   .about .cred{display:flex;flex-direction:column;margin-top:26px;border-top:1px solid rgba(255,255,255,.14)}
-  .about .cred span{display:flex;align-items:center;gap:11px;padding:13px 0;font-size:14px;
+  .about .cred>span{display:flex;align-items:center;gap:11px;padding:13px 0;font-size:14px;
     border-bottom:1px solid rgba(255,255,255,.1);color:rgba(233,236,230,.92)}
-  .about .cred span .tick{width:15px;height:15px;color:#9bb0a0;flex-shrink:0}
+  .about .cred>span .tick{width:15px;height:15px;color:#9bb0a0;flex-shrink:0}
 
   /* ---------- PRICING ---------- */
-  .price-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:0;border:1px solid var(--line-2);
-    border-radius:20px;overflow:hidden;background:var(--paper)}
-  @media(max-width:780px){.price-wrap{grid-template-columns:1fr}}
-  .price-left{padding:46px 44px;border-right:1px solid var(--line)}
-  @media(max-width:780px){.price-left{border-right:none;border-bottom:1px solid var(--line)}}
-  .price-left .tier{font-family:'Newsreader',serif;font-style:italic;font-size:18px;color:var(--moss)}
-  .price-left .amt{font-family:'Newsreader',serif;font-size:74px;font-weight:300;letter-spacing:-.03em;
-    margin:14px 0 0;line-height:1}
-  .price-left .amt sup{font-size:30px;font-weight:300;top:-1.1em;margin-right:2px}
-  .price-left .amt .per-mo{font-size:19px;color:var(--muted);font-family:'Hanken Grotesk';font-weight:500;letter-spacing:0}
-  .price-left .per{color:var(--muted);font-size:14.5px;margin:14px 0 28px}
-  .price-left .btn{width:100%;justify-content:center}
-  .price-left .foot{font-size:12.5px;color:var(--faint);margin-top:16px;text-align:center}
-  .price-right{padding:46px 44px;display:flex;flex-direction:column;justify-content:center}
-  .price-right .inc{font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--faint);margin-bottom:8px}
-  .price-right ul{list-style:none;display:grid;gap:0}
-  .price-right li{display:flex;gap:13px;font-size:15.5px;padding:14px 0;border-bottom:1px solid var(--line);align-items:flex-start}
-  .price-right li:last-child{border-bottom:none}
-  .price-right li .ck{width:17px;height:17px;color:var(--moss);flex-shrink:0;margin-top:3px}
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+  @media(max-width:840px){.plans{grid-template-columns:1fr;max-width:440px;margin:0 auto}}
+  .plan{background:var(--paper);border:1px solid var(--line-2);border-radius:18px;padding:34px 30px;
+    display:flex;flex-direction:column;position:relative}
+  .plan.feature{border-color:var(--forest);box-shadow:0 1px 2px rgba(26,25,21,.04),0 22px 46px rgba(26,25,21,.13)}
+  .plan .badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--forest);
+    color:var(--paper);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    padding:5px 13px;border-radius:999px;white-space:nowrap}
+  .plan .term{font-family:'Newsreader',serif;font-style:italic;font-size:20px;color:var(--moss)}
+  .plan .amt{font-family:'Newsreader',serif;font-size:52px;font-weight:300;letter-spacing:-.03em;margin:12px 0 0;line-height:1}
+  .plan .amt sup{font-size:24px;font-weight:300;top:-.8em;margin-right:1px}
+  .plan .permo{font-size:13.5px;color:var(--muted);margin-top:11px}
+  .plan .permo b{color:var(--ink-soft);font-weight:600}
+  .plan .save{display:inline-block;margin-top:11px;font-size:12px;font-weight:600;color:var(--moss);
+    background:var(--moss-soft);padding:4px 11px;border-radius:999px}
+  .plan ul{list-style:none;display:grid;gap:0;margin:24px 0 26px;border-top:1px solid var(--line)}
+  .plan li{display:flex;gap:11px;font-size:14.5px;padding:12px 0;border-bottom:1px solid var(--line);align-items:flex-start}
+  .plan li .ck{width:16px;height:16px;color:var(--moss);flex-shrink:0;margin-top:2.5px}
+  .plan li b{font-weight:600}
+  .plan .btn{width:100%;justify-content:center;margin-top:auto}
+  .plan.feature .btn-primary{background:var(--forest)}
+  .plan.feature .btn-primary:hover{background:var(--forest-2)}
 
-  /* ---------- TESTIMONIALS ---------- */
-  .tgrid{columns:2;column-gap:24px}
-  @media(max-width:760px){.tgrid{columns:1}}
-  .tcard{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:30px;
-    margin-bottom:24px;break-inside:avoid}
-  .tcard .stars{color:var(--ink);font-size:13px;letter-spacing:3px;margin-bottom:16px}
-  .tcard p{font-family:'Newsreader',serif;font-size:21px;font-weight:300;line-height:1.4;margin-bottom:22px;letter-spacing:-.01em}
-  .tcard .who{display:flex;align-items:center;gap:12px}
-  .tcard .who .av{width:38px;height:38px;border-radius:50%;background:var(--moss-soft);color:var(--forest);
-    display:grid;place-items:center;font-weight:600;font-size:13px}
-  .tcard .who .nm{font-weight:600;font-size:14px}
-  .tcard .who .meta{font-size:12.5px;color:var(--muted)}
+  /* ---------- PATIENT STORIES ---------- */
+  .story-list{border-top:1px solid var(--line-2)}
+  .story{display:grid;grid-template-columns:190px 1fr;gap:44px;padding:34px 0;
+    border-bottom:1px solid var(--line);align-items:start}
+  @media(max-width:680px){.story{grid-template-columns:1fr;gap:16px;padding:28px 0}}
+  .story-side{display:flex;flex-direction:column;gap:14px}
+  .story .idx{font-family:'Newsreader',serif;font-size:16px;color:var(--moss);font-weight:400}
+  .result{display:inline-flex;align-items:center;gap:6px;background:var(--moss-soft);color:var(--forest);
+    font-weight:700;font-size:12.5px;letter-spacing:.02em;padding:6px 12px 6px 10px;border-radius:999px;align-self:start}
+  .result svg{width:13px;height:13px}
+  .story p{font-family:'Newsreader',serif;font-size:21px;font-weight:400;line-height:1.45;
+    letter-spacing:-.01em;margin:0;text-wrap:pretty}
+  .story .goal{font-size:13px;color:var(--muted);margin-top:16px;letter-spacing:.01em}
 
   /* ---------- FINAL CTA ---------- */
   .final{background:var(--ink);color:var(--bone);border-radius:24px;padding:78px 40px;text-align:center}
@@ -223,7 +226,7 @@
       <a href="#how"><span data-en>How it works</span><span data-es>Cómo funciona</span></a>
       <a href="#about"><span data-en>About</span><span data-es>Sobre mí</span></a>
       <a href="#pricing"><span data-en>Pricing</span><span data-es>Precio</span></a>
-      <a href="#reviews"><span data-en>Reviews</span><span data-es>Opiniones</span></a>
+      <a href="#reviews"><span data-en>Stories</span><span data-es>Historias</span></a>
     </div>
     <div class="lang">
       <button id="enBtn" class="on" onclick="setLang('en')">EN</button>
@@ -243,7 +246,7 @@
         <span data-es>Comé mejor, <em>un plato</em> a la vez.</span>
       </h1>
       <p class="sub">
-        <span data-en>One-on-one coaching that fits real life. Send a photo of your meal, get honest feedback, and build habits that actually last forever, all from the messaging app you already use.</span>
+        <span data-en>One-on-one coaching that fits real life. Send a photo of your meal, get honest, real feedback, and build habits that actually last forever, all from the messaging app you already use.</span>
         <span data-es>Acompañamiento uno a uno que se adapta a tu vida real. Mandá una foto de tu plato, recibí una devolución honesta y construí hábitos que de verdad duran para siempre, todo desde la app de mensajes que ya usás.</span>
       </p>
       <div class="hero-cta">
@@ -259,15 +262,16 @@
       </div>
     </div>
     <div class="hero-card reveal in">
-      <img class="hero-photo" src="images/melina-food.jpg" alt="">
+      <img class="hero-photo" src="images/melina-food.jpg" alt="Granola">
       <div class="readout">
         <div class="readout-top">
           <span class="ttl"><span data-en>Lunch</span><span data-es>Almuerzo</span></span>
           <span class="tm">12:40 PM</span>
         </div>
-        <div class="meter"><span class="nm"><span data-en>Vegetables</span><span data-es>Vegetales</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div>
+        <div class="meter"><span class="nm"><span data-en>Fruits &amp; Vegetables</span><span data-es>Frutas y Verduras</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div>
         <div class="meter"><span class="nm"><span data-en>Protein</span><span data-es>Proteína</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
-        <div class="meter"><span class="nm"><span data-en>Balance</span><span data-es>Equilibrio</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div>
+        <div class="meter"><span class="nm"><span data-en>Carbohydrates</span><span data-es>Carbohidratos</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
+        <div class="meter"><span class="nm"><span data-en>Fats</span><span data-es>Grasas</span></span><span class="dots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div>
         <div class="readout-note">
           <span class="av">M</span>
           <span><span data-en>Great balance! Plenty of veggies. Add a little more protein next time.</span><span data-es>¡Buen equilibrio! Muchos vegetales. Sumá un poco más de proteína la próxima.</span></span>
@@ -299,14 +303,14 @@
         <span class="num">01</span>
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2L8 5h8l1.5 2h2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.4"/></svg>
         <h3><span data-en>Snap your plate</span><span data-es>Sacá una foto</span></h3>
-        <p><span data-en>Take a quick photo of what you're eating at home, at work, or out at a restaurant.</span><span data-es>Sacá una foto rápida de lo que estás comiendo — en casa, en el trabajo o en un restaurante.</span></p>
+        <p><span data-en>Take a quick photo of what you're eating at home, at work, or out at a restaurant.</span><span data-es>Sacá una foto rápida de lo que estás comiendo en casa, en el trabajo o en un restaurante.</span></p>
         <span class="ap"><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>via WhatsApp or Messages</span><span data-es>por WhatsApp o Mensajes</span></span>
       </div>
       <div class="step reveal">
         <span class="num">02</span>
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.6 8.6 0 0 1-4-1L3 20l1-5.5a8.6 8.6 0 0 1-1-4A8.38 8.38 0 0 1 11.5 2 8.38 8.38 0 0 1 21 11.5z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg>
         <h3><span data-en>Get personal feedback</span><span data-es>Recibí una devolución</span></h3>
-        <p><span data-en>A thumbs-up when you're on track, or a small, friendly tweak when something needs adjusting.</span><span data-es>Un visto bueno cuando vas bien, o un pequeño ajuste amable cuando algo hay que cambiar.</span></p>
+        <p><span data-en>A thumbs-up when you're on track, or a small, friendly tweak when something needs adjusting.</span><span data-es>Un visto bueno cuando vas bien, o un pequeño ajuste amable cuando hay que cambiar algo.</span></p>
         <span class="ap"><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>on demand</span><span data-es>a demanda</span></span>
       </div>
       <div class="step reveal">
@@ -327,11 +331,11 @@
       <img class="about-photo" src="images/melina-about.jpg" alt="Melina">
       <div>
         <span class="label"><span class="dot"></span><span data-en>Meet your coach</span><span data-es>Conocé a tu coach</span></span>
-        <h2 class="serif"><span data-en>Hi, I'm <em>Melina</em></span><span data-es>Hola, soy <em>Melina</em></span></h2>
-        <p><span data-en>I trained as a dietitian in Argentina and have spent years helping people reach their goals through patient, day to day, plate to plate, coaching rather than rigid diets.</span><span data-es>Me formé como dietista en Argentina y pasé años ayudando a personas a alcanzar sus objetivos con un acompañamiento paciente, día a día y plato a plato, en lugar de dietas rígidas.</span></p>
+        <h2 class="serif"><span data-en>Hi, I'm <em>Melina Casali</em></span><span data-es>Hola, soy <em>Melina</em></span></h2>
+        <p><span data-en>I trained as a dietitian in Argentina and have spent years helping people reach their goals through patient, day to day, plate to plate, coaching rather than rigid diets.</span><span data-es>Me formé como Licenciada en Nutrición en Argentina y pasé años ayudando a personas a alcanzar sus objetivos con un acompañamiento paciente, día a día y plato a plato, en lugar de dietas rígidas.</span></p>
         <p><span data-en>My approach is simple: meet you where you are, look at the food you actually eat, and teach you how to build a plate that you genuinely enjoy and that fits seamlessly into your daily life.  </span><span data-es>Mi enfoque es simple: acompañarte desde donde estás, mirar la comida que realmente comés y enseñarte a armar un plato que disfrutes de verdad y que se integre sin esfuerzo en tu día a día.</span></p>
         <div class="cred">
-          <span><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>Dietitian, trained in Argentina</span><span data-es>Dietista, formada en Argentina</span></span>
+          <span><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>Dietitian, trained in Argentina</span><span data-es>Lic Nutrición, formada en Argentina</span></span>
           <span><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>Bilingual — English &amp; Spanish</span><span data-es>Bilingüe — inglés y español</span></span>
           <span><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>20+ clients supported</span><span data-es>+20 clientes acompañados</span></span>
         </div>
@@ -344,62 +348,102 @@
 <section id="pricing">
   <div class="wrap">
     <div class="sec-head center reveal">
-      <span class="label"><span class="dot"></span><span data-en>Simple pricing</span><span data-es>Precio simple</span></span>
-      <h2 class="serif"><span data-en>One plan, everything included</span><span data-es>Un plan, todo incluido</span></h2>
-      <p><span data-en>No hidden fees. Cancel anytime.</span><span data-es>Sin costos ocultos. Cancelás cuando quieras.</span></p>
+      <span class="label"><span class="dot"></span><span data-en>Plans &amp; pricing</span><span data-es>Planes y precios</span></span>
+      <h2 class="serif"><span data-en>Choose your plan</span><span data-es>Elegí tu plan</span></h2>
+      <p><span data-en>The longer we work together, the more you save, and the more the habits stick.</span><span data-es>Cuanto más largo el plan, más ahorrás y más se afianzan los hábitos.</span></p>
     </div>
-    <div class="price-wrap reveal">
-      <div class="price-left">
-        <div class="tier"><span data-en>Monthly Coaching</span><span data-es>Acompañamiento Mensual</span></div>
-        <div class="amt"><sup>$</sup><span id="priceAmt">200</span><span class="per-mo">/mo</span></div>
-        <div class="per"><span data-en>billed monthly · cancel anytime</span><span data-es>facturado mensualmente · cancelás cuando quieras</span></div>
-        <a href="https://wa.me/14237492165" class="btn btn-primary">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.6 8.6 0 0 1-4-1L3 20l1-5.5a8.6 8.6 0 0 1-1-4A8.38 8.38 0 0 1 11.5 2 8.38 8.38 0 0 1 21 11.5z"/></svg>
-          <span data-en>Get started</span><span data-es>Empezá ahora</span>
-        </a>
-        <div class="foot"><span data-en>Most clients work with me for 1–2 months.</span><span data-es>La mayoría trabaja conmigo de 1 a 2 meses.</span></div>
-      </div>
-      <div class="price-right">
-        <div class="inc"><span data-en>What's included</span><span data-es>Qué incluye</span></div>
+    <div class="plans reveal">
+
+      <div class="plan">
+        <div class="term"><span data-en>1 Month</span><span data-es>1 Mes</span></div>
+        <div class="amt"><sup>$</sup>250</div>
+        <div class="permo"><b>$250</b> <span data-en>/ month</span><span data-es>/ mes</span></div>
         <ul>
-          <li><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>Daily meal photo feedback</span><span data-es>Devolución diaria de fotos de tus comidas</span></li>
+          <li><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>1 month of daily photo coaching of your meals</span><span data-es>1 mes de acompañamiento en el armado de platos</span></li>
+          <li><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en><b>3</b> video-call consultations</span><span data-es><b>3</b> consultas por videollamada</span></li>
           <li><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>Personalized guidance for your goals</span><span data-es>Orientación personalizada según tus objetivos</span></li>
-          <li><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>Check-in consultations every 2 weeks</span><span data-es>Consultas de seguimiento cada 2 semanas</span></li>
           <li><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>Message support in English or Spanish</span><span data-es>Soporte por mensaje en inglés o español</span></li>
-          <li><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>Right inside WhatsApp or Messages — whatever you prefer</span><span data-es>Directo en WhatsApp o Mensajes, lo que prefieras</span></li>
         </ul>
+        <a href="https://wa.me/14237492165?text=Hi%20Melina!%20I'd%20like%20to%20start%20the%201-month%20plan." class="btn btn-ghost">
+          <span data-en>Start 1 month</span><span data-es>Empezar 1 mes</span>
+        </a>
       </div>
+
+      <div class="plan">
+        <div class="term"><span data-en>2 Months</span><span data-es>2 Meses</span></div>
+        <div class="amt"><sup>$</sup>400</div>
+        <div class="permo"><b>$200</b> <span data-en>/ month</span><span data-es>/ mes</span></div>
+        <span class="save"><span data-en>Save $100</span><span data-es>Ahorrás $100</span></span>
+        <ul>
+          <li><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>2 months of daily photo coaching of your meals</span><span data-es>2 meses de acompañamiento en el armado de platos</span></li>
+          <li><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en><b>5</b> video-call consultations</span><span data-es><b>5</b> consultas por videollamada</span></li>
+          <li><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>Personalized guidance for your goals</span><span data-es>Orientación personalizada según tus objetivos</span></li>
+          <li><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>Message support in English or Spanish</span><span data-es>Soporte por mensaje en inglés o español</span></li>
+        </ul>
+        <a href="https://wa.me/14237492165?text=Hi%20Melina!%20I'd%20like%20to%20start%20the%202-month%20plan." class="btn btn-ghost">
+          <span data-en>Start 2 months</span><span data-es>Empezar 2 meses</span>
+        </a>
+      </div>
+
+      <div class="plan feature">
+        <span class="badge"><span data-en>Best value</span><span data-es>Mejor valor</span></span>
+        <div class="term"><span data-en>3 Months</span><span data-es>3 Meses</span></div>
+        <div class="amt"><sup>$</sup>500</div>
+        <div class="permo"><span data-en>≈</span><span data-es>≈</span> <b>$167</b> <span data-en>/ month</span><span data-es>/ mes</span></div>
+        <span class="save"><span data-en>Save $250</span><span data-es>Ahorrás $250</span></span>
+        <ul>
+          <li><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>3 months of daily photo coaching of your meals</span><span data-es>3 meses de acompañamiento en el armado de platos</span></li>
+          <li><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en><b>7</b> video-call consultations</span><span data-es><b>7</b> consultas por videollamada</span></li>
+          <li><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>Personalized guidance for your goals</span><span data-es>Orientación personalizada según tus objetivos</span></li>
+          <li><svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en>Message support in English or Spanish</span><span data-es>Soporte por mensaje en inglés o español</span></li>
+        </ul>
+        <a href="https://wa.me/14237492165?text=Hi%20Melina!%20I'd%20like%20to%20start%20the%203-month%20plan." class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.6 8.6 0 0 1-4-1L3 20l1-5.5a8.6 8.6 0 0 1-1-4A8.38 8.38 0 0 1 11.5 2 8.38 8.38 0 0 1 21 11.5z"/></svg>
+          <span data-en>Start 3 months</span><span data-es>Empezar 3 meses</span>
+        </a>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- PATIENT STORIES -->
 <section id="reviews">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="label"><span class="dot"></span><span data-en>Real results</span><span data-es>Resultados reales</span></span>
-      <h2 class="serif"><span data-en>What patients say</span><span data-es>Lo que dicen los pacientes</span></h2>
+      <h2 class="serif"><span data-en>Patient stories</span><span data-es>Historias de pacientes</span></h2>
     </div>
-    <div class="tgrid">
-      <div class="tcard reveal">
-        <div class="stars">★★★★★</div>
-        <p><span data-en>"I finally stopped dieting and started eating. The photo feedback kept me honest without feeling judged."</span><span data-es>"Por fin dejé de hacer dieta y empecé a comer. La devolución de las fotos me mantuvo honesta sin sentirme juzgada."</span></p>
-        <div class="who"><div class="av">SA</div><div><div class="nm">Sofia A.</div><div class="meta"><span data-en>Lost 18 lbs in 2 months</span><span data-es>Bajó 8 kg en 2 meses</span></div></div></div>
+    <div class="story-list">
+      <div class="story reveal">
+        <div class="story-side">
+          <span class="idx"><span data-en>Patient 1</span><span data-es>Paciente 1</span></span>
+          <span class="result"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg> <span data-en>15.5 lbs</span><span data-es>7 kg</span></span>
+        </div>
+        <div>
+          <p><span data-en>She wanted to learn how to eat, stop snacking, and feel more comfortable in her body. She got all of it, and lost 7 kg along the way.</span><span data-es>Quería aprender a comer, dejar de picotear y sentirse más cómoda con su cuerpo. Logró todo eso, ¡y encima bajó 7 kilos!</span></p>
+          <div class="goal"><span data-en>Goal: eat better, snack less</span><span data-es>Objetivo: comer mejor, picotear menos</span></div>
+        </div>
       </div>
-      <div class="tcard reveal">
-        <div class="stars">★★★★★</div>
-        <p><span data-en>"Having Melina just a text away made all the difference. Quick, kind, and actually doable advice."</span><span data-es>"Tener a Melina a un mensaje de distancia hizo toda la diferencia. Consejos rápidos, amables y realmente posibles."</span></p>
-        <div class="who"><div class="av">JM</div><div><div class="nm">James M.</div><div class="meta"><span data-en>Client · 6 weeks</span><span data-es>Cliente · 6 semanas</span></div></div></div>
+      <div class="story reveal">
+        <div class="story-side">
+          <span class="idx"><span data-en>Patient 2</span><span data-es>Paciente 2</span></span>
+          <span class="result"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg> <span data-en>26.5 lbs</span><span data-es>12 kg</span></span>
+        </div>
+        <div>
+          <p><span data-en>She spent her days working in the garden and wanted the mobility to keep up with her kids, and to lose at least 20 lbs. She lost 26.5 lbs.</span><span data-es>Trabajaba en el jardín, quería tener más movilidad para jugar con los niños y bajar al menos 10 kilos. ¡Bajó 12 kilos!</span></p>
+          <div class="goal"><span data-en>Goal: mobility + 10 kg</span><span data-es>Objetivo: movilidad + 10 kg</span></div>
+        </div>
       </div>
-      <div class="tcard reveal">
-        <div class="stars">★★★★★</div>
-        <p><span data-en>"She speaks both my languages — literally and figuratively. I never felt like I was on a crazy diet."</span><span data-es>"Habla mis dos idiomas — literal y figuradamente. Nunca sentí que estaba en una dieta loca."</span></p>
-        <div class="who"><div class="av">CR</div><div><div class="nm">Carmen R.</div><div class="meta"><span data-en>Client · 2 months</span><span data-es>Cliente · 2 meses</span></div></div></div>
-      </div>
-      <div class="tcard reveal">
-        <div class="stars">★★★★★</div>
-        <p><span data-en>"The two-week check-ins kept me accountable. Best money I've spent on my health."</span><span data-es>"Los seguimientos cada dos semanas me mantuvieron en foco. La mejor plata que gasté en mi salud."</span></p>
-        <div class="who"><div class="av">DT</div><div><div class="nm">Daniel T.</div><div class="meta"><span data-en>Lost 12 lbs</span><span data-es>Bajó 5 kg</span></div></div></div>
+      <div class="story reveal">
+        <div class="story-side">
+          <span class="idx"><span data-en>Patient 3</span><span data-es>Paciente 3</span></span>
+          <span class="result"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg> <span data-en>15 lbs</span><span data-es>7 kg</span></span>
+        </div>
+        <div>
+          <p><span data-en>An office worker, she wanted to get back to the weight she was ten years ago, and low-carb diets weren't getting her there in a way that lasted. We added carbohydrates back in, and she lost 7 kg.</span><span data-es>Trabajaba en oficina, quería volver a su peso de hace 10 años y las dietas bajas en carbohidratos no la ayudaban a lograrlo de manera sostenida. Incluimos carbohidratos, ¡y bajó 7 kilos!</span></p>
+          <div class="goal"><span data-en>Goal: sustainable weight loss</span><span data-es>Objetivo: bajar de forma sostenida</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -410,14 +454,14 @@
   <div class="wrap">
     <div class="final reveal">
       <h2 class="serif"><span data-en>Ready to <em>feel better?</em></span><span data-es>¿Lista para <em>sentirte mejor?</em></span></h2>
-      <p><span data-en>Send a message and let's talk about your goals. The first conversation is on me.</span><span data-es>Mandá un mensaje y hablemos de tus objetivos. La primera charla es gratis.</span></p>
+      <p><span data-en>Send a message and let's talk about your goals!</span><span data-es>Mandá un mensaje y hablemos de tus objetivos!</span></p>
       <a href="https://wa.me/14237492165" class="btn btn-light">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.6 8.6 0 0 1-4-1L3 20l1-5.5a8.6 8.6 0 0 1-1-4A8.38 8.38 0 0 1 11.5 2 8.38 8.38 0 0 1 21 11.5z"/></svg>
         <span data-en>Message Melina</span><span data-es>Escribile a Melina</span>
       </a>
     </div>
     <p class="disclaimer">
-      <span data-en>Nourish provides nutrition coaching and general wellness education. It is not medical care, medical nutrition therapy, or treatment for any disease or condition, and does not replace advice from your physician or a licensed healthcare provider. Always consult your doctor before making significant changes to your diet, especially if you have a medical condition.</span>
+      <span data-en>Melina Casali provides nutrition coaching and general wellness education. It is not medical care, medical nutrition therapy, or treatment for any disease or condition, and does not replace advice from your physician or a licensed healthcare provider. Always consult your doctor before making significant changes to your diet, especially if you have a medical condition.</span>
       <span data-es>Nourish ofrece coaching nutricional y educación general de bienestar. No constituye atención médica, terapia nutricional médica ni tratamiento de ninguna enfermedad o condición, y no reemplaza el consejo de tu médico o un profesional de salud licenciado. Consultá siempre a tu médico antes de hacer cambios importantes en tu alimentación, especialmente si tenés alguna condición médica.</span>
     </p>
   </div>
@@ -425,7 +469,8 @@
 
 <footer>
   <div class="wrap foot-in">
-    <a class="logo" href="#"><span class="mark">N</span> Nourish</a>
+    <a class="logo" href="#">N
+ Melina - Nutrition</a>
     <div class="cc">© 2026 Nourish · <span data-en>Nutrition coaching in English &amp; Spanish</span><span data-es>Coaching nutricional en inglés y español</span></div>
   </div>
 </footer>
